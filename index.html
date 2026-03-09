@@ -12,18 +12,19 @@
 
     :root {
       --cream: #FEECCE;
-      --deep-brown: #4a1212;
-      --ochre: #cb6c29;
-      --muted-brown: #7A5C3A;
-      --rule-color: #8B5E3C;
-      --light-border: rgba(74, 18, 18, 0.15);
+      --deep-brown: #FEECCE;
+      --ochre: #FEECCE;
+      --muted-brown: #e8c9a0;
+      --rule-color: #FEECCE;
+      --light-border: rgba(254, 236, 206, 0.25);
+      --maroon: #4a1212;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--cream);
-      color: var(--deep-brown);
+      background-color: #4a1212;
+      color: var(--cream);
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       min-height: 100vh;
@@ -58,12 +59,12 @@
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      background: var(--cream);
+      background: #FEECCE;
       border-radius: 50%;
       width: clamp(220px, 48vw, 300px);
       height: clamp(220px, 48vw, 300px);
       justify-content: center;
-      box-shadow: 0 0 0 1px var(--light-border), 0 4px 32px rgba(74, 18, 18, 0.08);
+      box-shadow: 0 0 0 1px rgba(74,18,18,0.15), 0 4px 32px rgba(0,0,0,0.3);
     }
 
     .hindi {
@@ -112,7 +113,7 @@
       font-size: clamp(22px, 4.5vw, 32px);
       font-weight: 400;
       font-style: italic;
-      color: var(--deep-brown);
+      color: var(--cream);
       line-height: 1.4;
     }
 
@@ -200,7 +201,7 @@
     }
 
     .form-frame {
-      background: rgba(255, 248, 235, 0.7);
+      background: rgba(90, 10, 10, 0.6);
       border: 1px solid var(--light-border);
       border-radius: 3px;
       overflow: hidden;
@@ -279,10 +280,10 @@
       z-index: 1;
     }
 
-    .corner-tl { top: 20px; left: 20px; border-top: 1px solid var(--deep-brown); border-left: 1px solid var(--deep-brown); }
-    .corner-tr { top: 20px; right: 20px; border-top: 1px solid var(--deep-brown); border-right: 1px solid var(--deep-brown); }
-    .corner-bl { bottom: 20px; left: 20px; border-bottom: 1px solid var(--deep-brown); border-left: 1px solid var(--deep-brown); }
-    .corner-br { bottom: 20px; right: 20px; border-bottom: 1px solid var(--deep-brown); border-right: 1px solid var(--deep-brown); }
+    .corner-tl { top: 20px; left: 20px; border-top: 1px solid var(--cream); border-left: 1px solid var(--cream); }
+    .corner-tr { top: 20px; right: 20px; border-top: 1px solid var(--cream); border-right: 1px solid var(--cream); }
+    .corner-bl { bottom: 20px; left: 20px; border-bottom: 1px solid var(--cream); border-left: 1px solid var(--cream); }
+    .corner-br { bottom: 20px; right: 20px; border-bottom: 1px solid var(--cream); border-right: 1px solid var(--cream); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -367,4 +368,4 @@
       <div class="footer-rule"></div>
       <p class="footer-text">
         Made with care in Brooklyn &nbsp;·&nbsp;
-        <a href="/cdn-cgi/l/email-protection#d7bfb2bbbbb897b6bea4bfa0b2bbbbb9b2a4a4f9b4b8ba"><span class="__cf_email__" data-cf
+        <a href="/cdn-cgi/l/email-protection#5e363b3232311e3f372d36293b3232303b2d2d703d3133"><span class="__cf_email__" data-c
