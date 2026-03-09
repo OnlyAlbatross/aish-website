@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AISH — Cardamom Ginger Protein Bars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400&family=Montserrat:wght@600&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FEECCE;
+      --deep-brown: #4a1212;
+      --ochre: #cb6c29;
+      --muted-brown: #7A5C3A;
+      --rule-color: #8B5E3C;
+      --light-border: rgba(74, 18, 18, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--deep-brown);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* HEADER */
+    header {
+      padding-top: 64px;
+      text-align: center;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .logo-circle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--cream);
+      border-radius: 50%;
+      width: clamp(220px, 48vw, 300px);
+      height: clamp(220px, 48vw, 300px);
+      justify-content: center;
+      box-shadow: 0 0 0 1px var(--light-border), 0 4px 32px rgba(74, 18, 18, 0.08);
+    }
+
+    .hindi {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-weight: 400;
+      font-size: clamp(36px, 8vw, 51px);
+      color: #cb6c29;
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+    }
+
+    .aish-wordmark {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: clamp(44px, 10vw, 64px);
+      color: #4a1212;
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+    }
+
+    .logo-rule {
+      width: 72%;
+      height: 1px;
+      background: #4a1212;
+      opacity: 0.3;
+      margin: 6px 0;
+    }
+
+    .flavor {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(15px, 3vw, 20px);
+      color: #4a1212;
+      letter-spacing: 0.1em;
+    }
+
+    /* TAGLINE */
+    .tagline-block {
+      margin-top: 48px;
+      text-align: center;
+      animation: fadeUp 0.8s ease 0.15s both;
+    }
+
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 4.5vw, 32px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--deep-brown);
+      line-height: 1.4;
+    }
+
+    .tagline-sub {
+      margin-top: 16px;
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--muted-brown);
+      line-height: 1.8;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* PILLS */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+      animation: fadeUp 0.8s ease 0.25s both;
+    }
+
+    .pill {
+      font-size: 10.5px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted-brown);
+      border: 1px solid var(--light-border);
+      border-radius: 100px;
+      padding: 6px 14px;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 52px 0 40px;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule-color);
+      opacity: 0.25;
+    }
+
+    .section-divider span {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      white-space: nowrap;
+    }
+
+    /* FORM */
+    .form-section { animation: fadeUp 0.8s ease 0.35s both; }
+
+    .form-intro {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .form-intro-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--deep-brown);
+    }
+
+    .form-intro-sub {
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--muted-brown);
+    }
+
+    .form-frame {
+      background: rgba(255, 248, 235, 0.7);
+      border: 1px solid var(--light-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .form-frame iframe {
+      width: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* INSTAGRAM */
+    .instagram-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+      text-decoration: none;
+      color: var(--muted-brown);
+      font-size: 11.5px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      animation: fadeUp 0.8s ease 0.45s both;
+    }
+
+    .instagram-link:hover { color: var(--ochre); }
+
+    .instagram-link svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 56px;
+      padding-bottom: 52px;
+      text-align: center;
+      animation: fadeUp 0.8s ease 0.5s both;
+    }
+
+    .footer-rule {
+      width: 28px;
+      height: 1px;
+      background: var(--rule-color);
+      opacity: 0.3;
+      margin: 0 auto 18px;
+    }
+
+    .footer-text {
+      font-size: 10.5px;
+      font-weight: 300;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted-brown);
+      opacity: 0.6;
+    }
+
+    .footer-text a { color: inherit; text-decoration: none; }
+    .footer-text a:hover { color: var(--ochre); opacity: 1; }
+
+    /* CORNERS */
+    .corner {
+      position: fixed;
+      width: 56px;
+      height: 56px;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .corner-tl { top: 20px; left: 20px; border-top: 1px solid var(--deep-brown); border-left: 1px solid var(--deep-brown); }
+    .corner-tr { top: 20px; right: 20px; border-top: 1px solid var(--deep-brown); border-right: 1px solid var(--deep-brown); }
+    .corner-bl { bottom: 20px; left: 20px; border-bottom: 1px solid var(--deep-brown); border-left: 1px solid var(--deep-brown); }
+    .corner-br { bottom: 20px; right: 20px; border-bottom: 1px solid var(--deep-brown); border-right: 1px solid var(--deep-brown); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 20px; }
+      header { padding-top: 48px; }
+      .corner { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="container">
+
+    <header>
+      <div class="logo-circle">
+        <span class="hindi">ऐश</span>
+        <span class="aish-wordmark">AISH</span>
+        <div class="logo-rule"></div>
+        <span class="flavor">Cardamom Ginger</span>
+        <div class="logo-rule"></div>
+      </div>
+    </header>
+
+    <section class="tagline-block">
+      <p class="tagline">Strong body. Calm gut.</p>
+      <p class="tagline-sub">
+        Small batch protein bars inspired by Ayurvedic digestive principles.
+        13g protein, 8 whole food ingredients, no artificial sweeteners.
+        Made in Brooklyn, NYC.
+      </p>
+    </section>
+
+    <div class="pills">
+      <span class="pill">13g Protein</span>
+      <span class="pill">Cardamom &amp; Ginger</span>
+      <span class="pill">Ayurvedic</span>
+      <span class="pill">No Dairy</span>
+      <span class="pill">Small Batch</span>
+    </div>
+
+    <div class="section-divider">
+      <span>Get yours before it sells out</span>
+    </div>
+
+    <section class="form-section">
+      <div class="form-intro">
+        <p class="form-intro-text">Be the first to know.</p>
+        <p class="form-intro-sub">Join the waitlist for Drop 3 and future drops.</p>
+      </div>
+      <div class="form-frame">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdhA9EqGnhQoJ4BaqUnL2Se4EOtY01JyX28cvin3nh4Jooeiw/viewform?embedded=true"
+          height="1530"
+          title="AISH Waitlist">
+          Loading…
+        </iframe>
+      </div>
+    </section>
+
+    <a href="https://instagram.com/aish.wellness"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="instagram-link">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+      </svg>
+      @aish.wellness
+    </a>
+
+    <footer>
+      <div class="footer-rule"></div>
+      <p class="footer-text">
+        Made with care in Brooklyn &nbsp;·&nbsp;
+        <a href="/cdn-cgi/l/email-protection#d7bfb2bbbbb897b6bea4bfa0b2bbbbb9b2a4a4f9b4b8ba"><span class="__cf_email__" data-cf
