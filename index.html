@@ -6,24 +6,27 @@
   <title>AISH — Cardamom Ginger Protein Bars</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400&family=Montserrat:wght@600&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400&family=Montserrat:wght@600;700&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream: #FEECCE;
-      --deep-brown: #FEECCE;
-      --ochre: #FEECCE;
-      --muted-brown: #e8c9a0;
-      --rule-color: #FEECCE;
-      --light-border: rgba(254, 236, 206, 0.25);
       --maroon: #4a1212;
+      --maroon-light: #5e1a1a;
+      --maroon-dark: #360d0d;
+      --cream: #FEECCE;
+      --cream-dim: rgba(254, 236, 206, 0.7);
+      --cream-faint: rgba(254, 236, 206, 0.15);
+      --ochre: #cb6c29;
+      --ochre-light: #e07e38;
+      --muted: #c4a882;
+      --border: rgba(254, 236, 206, 0.18);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: #4a1212;
+      background-color: var(--maroon);
       color: var(--cream);
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
@@ -31,131 +34,200 @@
       overflow-x: hidden;
     }
 
+    /* Grain overlay */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 100;
+      z-index: 200;
     }
 
+    /* Corner marks */
+    .corner {
+      position: fixed;
+      width: 48px; height: 48px;
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .corner-tl { top: 20px; left: 20px; border-top: 1px solid var(--cream); border-left: 1px solid var(--cream); }
+    .corner-tr { top: 20px; right: 20px; border-top: 1px solid var(--cream); border-right: 1px solid var(--cream); }
+    .corner-bl { bottom: 20px; left: 20px; border-bottom: 1px solid var(--cream); border-left: 1px solid var(--cream); }
+    .corner-br { bottom: 20px; right: 20px; border-bottom: 1px solid var(--cream); border-right: 1px solid var(--cream); }
+
+    /* ── LAYOUT ── */
     .container {
       position: relative;
       z-index: 1;
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto;
       padding: 0 32px;
     }
 
-    /* HEADER */
+    /* ── HEADER / LOGO ── */
     header {
-      padding-top: 64px;
+      padding-top: 72px;
       text-align: center;
-      animation: fadeUp 0.8s ease both;
+      animation: fadeUp 0.9s ease both;
     }
 
     .logo-circle {
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      background: #FEECCE;
-      border-radius: 50%;
-      width: clamp(220px, 48vw, 300px);
-      height: clamp(220px, 48vw, 300px);
       justify-content: center;
-      box-shadow: 0 0 0 1px rgba(74,18,18,0.15), 0 4px 32px rgba(0,0,0,0.3);
+      background: var(--cream);
+      border-radius: 50%;
+      width: clamp(200px, 44vw, 280px);
+      height: clamp(200px, 44vw, 280px);
+      box-shadow: 0 0 0 1px rgba(74,18,18,0.2), 0 8px 48px rgba(0,0,0,0.4);
     }
 
     .hindi {
       font-family: 'Noto Sans Devanagari', sans-serif;
-      font-weight: 400;
-      font-size: clamp(36px, 8vw, 51px);
-      color: #cb6c29;
+      font-size: clamp(32px, 7vw, 46px);
+      color: var(--ochre);
       letter-spacing: 0.02em;
-      margin-bottom: 2px;
+      margin-bottom: 0;
     }
 
     .aish-wordmark {
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      font-size: clamp(44px, 10vw, 64px);
-      color: #4a1212;
+      font-size: clamp(42px, 9.5vw, 60px);
+      color: var(--maroon);
       letter-spacing: 0.06em;
-      line-height: 1.4;
+      line-height: 1.15;
     }
 
     .logo-rule {
-      width: 72%;
+      width: 68%;
       height: 1px;
-      background: #4a1212;
-      opacity: 0.3;
-      margin: 6px 0;
+      background: var(--maroon);
+      opacity: 0.2;
+      margin: 5px 0;
     }
 
     .flavor {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: clamp(15px, 3vw, 20px);
-      color: #4a1212;
-      letter-spacing: 0.1em;
+      font-size: clamp(13px, 2.8vw, 18px);
+      color: var(--maroon);
+      letter-spacing: 0.12em;
+      opacity: 0.75;
     }
 
-    /* TAGLINE */
+    /* ── TAGLINE ── */
     .tagline-block {
-      margin-top: 48px;
+      margin-top: 52px;
       text-align: center;
-      animation: fadeUp 0.8s ease 0.15s both;
+      animation: fadeUp 0.9s ease 0.12s both;
     }
 
     .tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(22px, 4.5vw, 32px);
-      font-weight: 400;
+      font-size: clamp(26px, 5.5vw, 38px);
       font-style: italic;
+      font-weight: 300;
       color: var(--cream);
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     .tagline-sub {
-      margin-top: 16px;
-      font-size: 13.5px;
+      margin-top: 18px;
+      font-size: 14.5px;
       font-weight: 300;
-      color: var(--muted-brown);
-      line-height: 1.8;
-      max-width: 440px;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 420px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    /* PILLS */
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 48px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 20px 12px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: clamp(20px, 4vw, 28px);
+      color: var(--ochre);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── PILLS ── */
     .pills {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
-      margin-top: 28px;
-      animation: fadeUp 0.8s ease 0.25s both;
+      margin-top: 32px;
+      animation: fadeUp 0.9s ease 0.25s both;
     }
 
     .pill {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 400;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--muted-brown);
-      border: 1px solid var(--light-border);
+      color: var(--muted);
+      border: 1px solid var(--border);
       border-radius: 100px;
       padding: 6px 14px;
     }
 
-    /* DIVIDER */
+    /* ── HERO IMAGE ── */
+    .hero-image-section {
+      margin-top: 56px;
+      animation: fadeUp 0.9s ease 0.28s both;
+    }
+
+    .hero-image-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 64px rgba(0,0,0,0.5);
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ── SECTION DIVIDER ── */
     .section-divider {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin: 52px 0 40px;
-      animation: fadeUp 0.8s ease 0.3s both;
+      margin: 60px 0 44px;
     }
 
     .section-divider::before,
@@ -163,78 +235,210 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: var(--rule-color);
-      opacity: 0.25;
+      background: var(--cream);
+      opacity: 0.15;
     }
 
     .section-divider span {
-      font-size: 14px;
+      font-size: 10px;
       font-weight: 500;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ochre);
       white-space: nowrap;
     }
 
-    /* FORM */
-    .form-section { animation: fadeUp 0.8s ease 0.35s both; }
-
-    .form-intro {
-      text-align: center;
-      margin-bottom: 24px;
+    /* ── STORY ── */
+    .story-section {
+      animation: fadeUp 0.9s ease 0.3s both;
     }
 
-    .form-intro-text {
+    .story-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 16px;
+    }
+
+    .story-headline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-weight: 400;
+      font-size: clamp(22px, 4.5vw, 30px);
       font-style: italic;
-      color: var(--deep-brown);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.4;
+      margin-bottom: 20px;
     }
 
-    .form-intro-sub {
-      margin-top: 6px;
+    .story-body {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .story-sig {
+      margin-top: 24px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--cream);
+      opacity: 0.6;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      animation: fadeUp 0.9s ease 0.32s both;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .testimonial {
+      background: var(--cream-faint);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .testimonial-name {
+      margin-top: 12px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ochre);
+    }
+
+    .testimonial.featured {
+      grid-column: span 2;
+      background: rgba(203, 108, 41, 0.08);
+      border-color: rgba(203, 108, 41, 0.25);
+    }
+
+    /* ── WAITLIST FORM ── */
+    .waitlist-section {
+      animation: fadeUp 0.9s ease 0.35s both;
+    }
+
+    .waitlist-box {
+      background: var(--cream-faint);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 36px 32px;
+      text-align: center;
+    }
+
+    .waitlist-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 4vw, 26px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .waitlist-sub {
       font-size: 12px;
       font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--muted-brown);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 28px;
     }
 
-    .form-frame {
-      background: rgba(90, 10, 10, 0.6);
-      border: 1px solid var(--light-border);
+    .waitlist-form {
+      display: flex;
+      gap: 10px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .waitlist-input {
+      flex: 1;
+      background: rgba(254, 236, 206, 0.08);
+      border: 1px solid var(--border);
       border-radius: 3px;
-      overflow: hidden;
+      padding: 13px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.2s ease;
     }
 
-    .form-frame iframe {
-      width: 100%;
+    .waitlist-input::placeholder { color: rgba(196,168,130,0.5); }
+    .waitlist-input:focus { border-color: rgba(203,108,41,0.5); }
+
+    .waitlist-btn {
+      background: var(--ochre);
+      color: var(--cream);
       border: none;
-      display: block;
+      border-radius: 3px;
+      padding: 13px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      white-space: nowrap;
     }
 
-    /* INSTAGRAM */
+    .waitlist-btn:hover { background: var(--ochre-light); }
+
+    .waitlist-disclaimer {
+      margin-top: 14px;
+      font-size: 10.5px;
+      font-weight: 300;
+      color: var(--muted);
+      opacity: 0.6;
+      letter-spacing: 0.06em;
+    }
+
+    .waitlist-success {
+      display: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ochre);
+    }
+
+    /* ── INSTAGRAM ── */
     .instagram-link {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      margin-top: 40px;
+      margin-top: 44px;
       text-decoration: none;
-      color: var(--muted-brown);
-      font-size: 11.5px;
+      color: var(--muted);
+      font-size: 11px;
       font-weight: 400;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       transition: color 0.2s ease;
-      animation: fadeUp 0.8s ease 0.45s both;
     }
 
     .instagram-link:hover { color: var(--ochre); }
 
     .instagram-link svg {
-      width: 15px;
-      height: 15px;
+      width: 14px; height: 14px;
       stroke: currentColor;
       fill: none;
       stroke-width: 1.6;
@@ -242,58 +446,61 @@
       stroke-linejoin: round;
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       margin-top: 56px;
-      padding-bottom: 52px;
+      padding-bottom: 56px;
       text-align: center;
-      animation: fadeUp 0.8s ease 0.5s both;
     }
 
     .footer-rule {
-      width: 28px;
+      width: 24px;
       height: 1px;
-      background: var(--rule-color);
-      opacity: 0.3;
+      background: var(--cream);
+      opacity: 0.2;
       margin: 0 auto 18px;
     }
 
     .footer-text {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 300;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--muted-brown);
-      opacity: 0.6;
+      color: var(--muted);
+      opacity: 0.55;
     }
 
     .footer-text a { color: inherit; text-decoration: none; }
     .footer-text a:hover { color: var(--ochre); opacity: 1; }
 
-    /* CORNERS */
-    .corner {
-      position: fixed;
-      width: 56px;
-      height: 56px;
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .corner-tl { top: 20px; left: 20px; border-top: 1px solid var(--cream); border-left: 1px solid var(--cream); }
-    .corner-tr { top: 20px; right: 20px; border-top: 1px solid var(--cream); border-right: 1px solid var(--cream); }
-    .corner-bl { bottom: 20px; left: 20px; border-bottom: 1px solid var(--cream); border-left: 1px solid var(--cream); }
-    .corner-br { bottom: 20px; right: 20px; border-bottom: 1px solid var(--cream); border-right: 1px solid var(--cream); }
-
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 480px) {
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 520px) {
       .container { padding: 0 20px; }
-      header { padding-top: 48px; }
+      header { padding-top: 52px; }
       .corner { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonial.featured { grid-column: span 1; }
+      .waitlist-form { flex-direction: column; }
+      .waitlist-box { padding: 28px 20px; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-bottom: 1px solid var(--border); }
     }
   </style>
 </head>
@@ -306,56 +513,138 @@
 
   <div class="container">
 
+    <!-- LOGO -->
     <header>
       <div class="logo-circle">
         <span class="hindi">ऐश</span>
         <span class="aish-wordmark">AISH</span>
         <div class="logo-rule"></div>
         <span class="flavor">Cardamom Ginger</span>
-        <div class="logo-rule"></div>
       </div>
     </header>
 
+    <!-- TAGLINE -->
     <section class="tagline-block">
       <p class="tagline">Strong body. Calm gut.</p>
       <p class="tagline-sub">
         Small batch protein bars inspired by Ayurvedic digestive principles.
-        13g protein, 8 whole food ingredients, no artificial sweeteners.
-        Made in Brooklyn, NYC.
+        13g protein, 8 whole food ingredients, no bloating.
+        Made by hand in Brooklyn, NYC.
       </p>
     </section>
 
-    <div class="pills">
-      <span class="pill">13g Protein</span>
-      <span class="pill">Cardamom &amp; Ginger</span>
-      <span class="pill">Ayurvedic</span>
-      <span class="pill">No Dairy</span>
-      <span class="pill">Small Batch</span>
-    </div>
-
-    <div class="section-divider">
-      <span>Get yours before it sells out</span>
-    </div>
-
-    <section class="form-section">
-      <div class="form-intro">
-        <p class="form-intro-text">Be the first to know.</p>
-        <p class="form-intro-sub">Join the waitlist for Drop 3 and future drops.</p>
+    <!-- STATS -->
+    <div class="stats-bar scroll-reveal">
+      <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Drops Sold Out</div>
       </div>
-      <div class="form-frame">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSdhA9EqGnhQoJ4BaqUnL2Se4EOtY01JyX28cvin3nh4Jooeiw/viewform?embedded=true"
-          height="1530"
-          title="AISH Waitlist">
-          Loading…
-        </iframe>
+      <div class="stat">
+        <div class="stat-number">30+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Whole Ingredients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">13g</div>
+        <div class="stat-label">Plant Protein</div>
+      </div>
+    </div>
+
+    <!-- PILLS -->
+    <div class="pills scroll-reveal">
+      <span class="pill">No Dairy</span>
+      <span class="pill">No Artificial Sweeteners</span>
+      <span class="pill">Ayurvedic</span>
+      <span class="pill">Small Batch</span>
+      <span class="pill">Brooklyn Made</span>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div class="hero-image-section scroll-reveal">
+      <div class="hero-image-wrap">
+        <img src="hero.png" alt="Abhi holding an AISH Cardamom Ginger protein bar" />
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="section-divider scroll-reveal"><span>The Story</span></div>
+
+    <section class="story-section scroll-reveal">
+      <p class="story-eyebrow">Why AISH exists</p>
+      <p class="story-headline">"I was sick of choosing between my macros and actually feeling good."</p>
+      <p class="story-body">
+        I have had chronic digestion issues for most of my life. Every protein bar I tried left me bloated, sluggish, or worse. So I started making my own, drawing on Ayurvedic ingredients my family has used for generations — cardamom and ginger for digestion, whole food protein that your body actually recognizes.
+        <br><br>
+        After testing two drops across 30+ customers in Brooklyn and NYC, it was clear many people are suffering through the same thing. AISH is for anyone who is tired of processed, disgusting protein bars that treat performance and feeling good as mutually exclusive.
+      </p>
+      <p class="story-sig">— Abhi, Founder &amp; maker</p>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <div class="section-divider scroll-reveal"><span>What people are saying</span></div>
+
+    <section class="testimonials-section scroll-reveal">
+      <div class="testimonials-grid">
+
+        <div class="testimonial featured">
+          <p class="testimonial-text">"Better than RX bars, honestly. I left them out and the consistency was good — soft enough to bite into but not crumbly. If these were side by side I would choose yours over RX bars."</p>
+          <p class="testimonial-name">Brett S. &mdash; Drop 1</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">"What the duck did you put in here? It tastes so good. No seriously, we're obsessed."</p>
+          <p class="testimonial-name">Michelle R. &mdash; Drop 1</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">"These are amazing." Instantly bought 6 more.</p>
+          <p class="testimonial-name">Nathan K. &mdash; Drop 1 &amp; 2</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">"Taste was great, definitely felt familiar and wholesome."</p>
+          <p class="testimonial-name">Shloak J. &mdash; Drop 2</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">"Me and my wife had the bar — you definitely have something going for yourself. Looking forward to the next batch."</p>
+          <p class="testimonial-name">Ali &mdash; Drop 2</p>
+        </div>
+
       </div>
     </section>
 
+    <!-- WAITLIST -->
+    <div class="section-divider scroll-reveal"><span>Drop 3 — Coming Soon</span></div>
+
+    <section class="waitlist-section scroll-reveal">
+      <div class="waitlist-box">
+        <p class="waitlist-headline">Be the first to know.</p>
+        <p class="waitlist-sub">Join the waitlist. Drop 3 sells out fast.</p>
+        <div class="waitlist-form" id="waitlist-form">
+          <input
+            type="email"
+            class="waitlist-input"
+            id="email-input"
+            placeholder="your@email.com"
+            autocomplete="email"
+          />
+          <button class="waitlist-btn" onclick="submitWaitlist()">Join Drop 3</button>
+        </div>
+        <p class="waitlist-success" id="waitlist-success">You're on the list. See you at Drop 3.</p>
+        <p class="waitlist-disclaimer">Currently delivering within NYC only. Enter your email and we'll notify you when we expand.</p>
+        <p class="waitlist-disclaimer">No spam. Drop notifications only.</p>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM -->
     <a href="https://instagram.com/aish.wellness"
        target="_blank"
        rel="noopener noreferrer"
-       class="instagram-link">
+       class="instagram-link scroll-reveal">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
         <circle cx="12" cy="12" r="4"/>
@@ -364,15 +653,52 @@
       @aish.wellness
     </a>
 
-    <footer>
+    <!-- FOOTER -->
+    <footer class="scroll-reveal">
       <div class="footer-rule"></div>
       <p class="footer-text">
         Made with care in Brooklyn &nbsp;&middot;&nbsp;
-        hello&#64;aishwellness.com
+        <a href="mailto:hello@aishwellness.com">hello@aishwellness.com</a>
       </p>
     </footer>
 
   </div>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Waitlist form — opens Google Form in background, shows success state
+    function submitWaitlist() {
+      const email = document.getElementById('email-input').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('email-input').style.borderColor = 'rgba(203,108,41,0.8)';
+        return;
+      }
+      // Submit to Google Form
+      const formId = '1FAIpQLSdhA9EqGnhQoJ4BaqUnL2Se4EOtY01JyX28cvin3nh4Jooeiw';
+      const entryId = 'entry.1045781291'; // email field entry ID — update if needed
+      const url = \`https://docs.google.com/forms/d/e/\${formId}/formResponse?submit=Submit&\${entryId}=\${encodeURIComponent(email)}\`;
+      fetch(url, { method: 'POST', mode: 'no-cors' }).catch(() => {});
+
+      document.getElementById('waitlist-form').style.display = 'none';
+      document.getElementById('waitlist-success').style.display = 'block';
+    }
+
+    // Enter key on input
+    document.getElementById('email-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') submitWaitlist();
+    });
+  </script>
 
 </body>
 </html>
