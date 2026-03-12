@@ -205,7 +205,7 @@
 
     /* ── HERO IMAGE ── */
     .hero-image-section {
-      margin-top: 56px;
+      margin-top: 40px;
       animation: fadeUp 0.9s ease 0.28s both;
     }
 
@@ -227,7 +227,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      margin: 60px 0 44px;
+      margin: 40px 0 28px;
     }
 
     .section-divider::before,
@@ -254,7 +254,7 @@
     }
 
     .story-eyebrow {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -285,7 +285,7 @@
       font-size: 15px;
       font-style: italic;
       color: var(--cream);
-      opacity: 0.6;
+      opacity: 0.85;
     }
 
     /* ── TESTIMONIALS ── */
@@ -317,7 +317,7 @@
 
     .testimonial-name {
       margin-top: 12px;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -326,12 +326,11 @@
 
     .testimonial.featured {
       grid-column: span 2;
-      background: rgba(203, 108, 41, 0.08);
-      border-color: rgba(203, 108, 41, 0.25);
     }
 
     /* ── WAITLIST FORM ── */
     .waitlist-section {
+      margin-top: 40px;
       animation: fadeUp 0.9s ease 0.35s both;
     }
 
@@ -404,10 +403,10 @@
 
     .waitlist-disclaimer {
       margin-top: 14px;
-      font-size: 10.5px;
+      font-size: 12px;
       font-weight: 300;
       color: var(--muted);
-      opacity: 0.6;
+      opacity: 0.85;
       letter-spacing: 0.06em;
     }
 
@@ -424,21 +423,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       margin-top: 44px;
+      padding: 14px 28px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
       text-decoration: none;
-      color: var(--muted);
+      color: var(--cream);
       font-size: 11px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      transition: color 0.2s ease;
+      transition: border-color 0.2s ease, color 0.2s ease;
     }
 
-    .instagram-link:hover { color: var(--ochre); }
+    .instagram-link:hover { color: var(--ochre); border-color: var(--ochre); }
 
     .instagram-link svg {
-      width: 14px; height: 14px;
+      width: 15px; height: 15px;
       stroke: currentColor;
       fill: none;
       stroke-width: 1.6;
@@ -525,12 +530,32 @@
 
     <!-- TAGLINE -->
     <section class="tagline-block">
-      <p class="tagline">Strong body. Calm gut.</p>
+      <p class="tagline">The protein bar that doesn't wreck your gut.</p>
       <p class="tagline-sub">
         Small batch protein bars inspired by Ayurvedic digestive principles.
         13g protein, 8 whole food ingredients, no bloating.
         Made by hand in Brooklyn, NYC.
       </p>
+    </section>
+
+    <!-- WAITLIST -->
+    <section class="waitlist-section scroll-reveal">
+      <div class="waitlist-box">
+        <p class="waitlist-headline">Sign up below to get yours.</p>
+        <p class="waitlist-sub">Join the waitlist. Drops sell out fast.</p>
+        <div class="waitlist-form" id="waitlist-form">
+          <input
+            type="email"
+            class="waitlist-input"
+            id="email-input"
+            placeholder="your@email.com"
+            autocomplete="email"
+          />
+          <button class="waitlist-btn" onclick="submitWaitlist()">Join Now</button>
+        </div>
+        <p class="waitlist-success" id="waitlist-success">You're on the list. See you at Drop 3.</p>
+        <p class="waitlist-disclaimer">Currently available in NYC. Sign up and we'll notify you when we expand.</p>
+      </div>
     </section>
 
     <!-- STATS -->
@@ -596,7 +621,7 @@
 
         <div class="testimonial">
           <p class="testimonial-text">"What the duck did you put in here? It tastes so good. No seriously, we're obsessed."</p>
-          <p class="testimonial-name">Michelle R. &mdash; Drop 1</p>
+          <p class="testimonial-name">Michelle R. &mdash; Drop 1 &amp; 2</p>
         </div>
 
         <div class="testimonial">
@@ -617,28 +642,6 @@
       </div>
     </section>
 
-    <!-- WAITLIST -->
-    <div class="section-divider scroll-reveal"><span>Drop 3 — Coming Soon</span></div>
-
-    <section class="waitlist-section scroll-reveal">
-      <div class="waitlist-box">
-        <p class="waitlist-headline">Be the first to know.</p>
-        <p class="waitlist-sub">Join the waitlist. Drop 3 sells out fast.</p>
-        <div class="waitlist-form" id="waitlist-form">
-          <input
-            type="email"
-            class="waitlist-input"
-            id="email-input"
-            placeholder="your@email.com"
-            autocomplete="email"
-          />
-          <button class="waitlist-btn" onclick="submitWaitlist()">Join Drop 3</button>
-        </div>
-        <p class="waitlist-success" id="waitlist-success">You're on the list. See you at Drop 3.</p>
-        <p class="waitlist-disclaimer">Currently delivering within NYC only. Enter your email and we'll notify you when we expand.</p>
-        <p class="waitlist-disclaimer">No spam. Drop notifications only.</p>
-      </div>
-    </section>
 
     <!-- INSTAGRAM -->
     <a href="https://instagram.com/aish.wellness"
@@ -650,7 +653,7 @@
         <circle cx="12" cy="12" r="4"/>
         <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
       </svg>
-      @aish.wellness
+      Follow on Instagram
     </a>
 
     <!-- FOOTER -->
@@ -684,11 +687,13 @@
         document.getElementById('email-input').style.borderColor = 'rgba(203,108,41,0.8)';
         return;
       }
-      // Submit to Google Form
-      const formId = '1FAIpQLSdhA9EqGnhQoJ4BaqUnL2Se4EOtY01JyX28cvin3nh4Jooeiw';
-      const entryId = 'entry.1045781291'; // email field entry ID — update if needed
-      const url = \`https://docs.google.com/forms/d/e/\${formId}/formResponse?submit=Submit&\${entryId}=\${encodeURIComponent(email)}\`;
-      fetch(url, { method: 'POST', mode: 'no-cors' }).catch(() => {});
+      // Submit to Google Apps Script -> Google Sheet
+      fetch('https://script.google.com/macros/s/AKfycbw1E_5Z8_tabEMN0A3XDsKfUWmf9CaziGyPbuN46vmcNa2t3ueBuJNhHmCvcy0E7AIRWw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(email)
+      }).catch(() => {});
 
       document.getElementById('waitlist-form').style.display = 'none';
       document.getElementById('waitlist-success').style.display = 'block';
