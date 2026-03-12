@@ -119,6 +119,17 @@
       opacity: 0.75;
     }
 
+    .aish-meaning {
+      text-align: center;
+      margin-top: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--muted);
+      opacity: 0.75;
+      letter-spacing: 0.08em;
+    }
+
     /* ── TAGLINE ── */
     .tagline-block {
       margin-top: 52px;
@@ -450,6 +461,15 @@
       letter-spacing: 0.06em;
     }
 
+    .email-error {
+      display: none;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--ochre);
+      opacity: 0.9;
+    }
+
     .waitlist-success {
       display: none;
       font-family: 'Cormorant Garamond', serif;
@@ -587,15 +607,15 @@
         <div class="logo-rule"></div>
         <span class="flavor">Cardamom Ginger</span>
       </div>
+      <p class="aish-meaning">ऐश &mdash; the good life</p>
     </header>
 
     <!-- TAGLINE -->
     <section class="tagline-block">
       <p class="tagline">The protein bar that doesn't wreck your gut.</p>
       <p class="tagline-sub">
-        Small batch protein bars inspired by Ayurvedic digestive principles.
-        13g protein, 7 whole food ingredients, no bloating.
-        Made by hand in Brooklyn, NYC.
+        Made by hand in Brooklyn from 7 whole food ingredients.
+        The bar you actually look forward to eating.
       </p>
     </section>
 
@@ -612,8 +632,9 @@
             placeholder="your@email.com"
             autocomplete="email"
           />
-          <button class="waitlist-btn" onclick="submitWaitlist()">Join Now</button>
+          <button class="waitlist-btn" id="waitlist-btn" onclick="submitWaitlist()">Join Now</button>
         </div>
+        <p class="email-error" id="email-error">Please enter a valid email address.</p>
         <p class="waitlist-success" id="waitlist-success">You're on the list. See you at the Next Drop.</p>
         <p class="waitlist-disclaimer">Launching in NYC — sign up and be the first to know when we come to you.</p>
       </div>
@@ -665,7 +686,7 @@
       <p class="story-body">
         I have had chronic digestion issues for most of my life. Every protein bar I tried left me bloated, sluggish, or worse. So I started making my own, drawing on Ayurvedic ingredients my family has used for generations — cardamom and ginger for digestion, whole food protein that your body actually recognizes.
         <br><br>
-        After testing two drops across 30+ customers in Brooklyn and NYC, it was clear many people are suffering through the same thing. AISH is for anyone who is tired of processed, disgusting protein bars that treat performance and feeling good as mutually exclusive.
+        After testing two drops across 30+ customers in Brooklyn and NYC, it was clear many people are suffering through the same thing. AISH is for anyone who believes what you eat should make you feel good — not just fuel you and get out of the way.
       </p>
       <p class="story-sig">— Abhi, Founder &amp; maker</p>
     </section>
@@ -747,38 +768,65 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
+    // Capture UTM params on load
+    const _utm = (p => ({
+      source:   p.get('utm_source')   || '',
+      medium:   p.get('utm_medium')   || '',
+      campaign: p.get('utm_campaign') || ''
+    }))(new URLSearchParams(window.location.search));
+
     // Waitlist form
+    let _submitting = false;
     function submitWaitlist() {
-      const email = document.getElementById('email-input').value.trim();
-      if (!email || !email.includes('@')) {
-        document.getElementById('email-input').style.borderColor = 'rgba(203,108,41,0.8)';
+      if (_submitting) return;
+
+      const emailInput = document.getElementById('email-input');
+      const errorEl   = document.getElementById('email-error');
+      const email     = emailInput.value.trim();
+      const valid     = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!valid) {
+        emailInput.style.borderColor = 'rgba(203,108,41,0.8)';
+        errorEl.style.display = 'block';
         return;
       }
 
-      // Show success immediately — don't make user wait for metadata
+      // Clear error state
+      emailInput.style.borderColor = '';
+      errorEl.style.display = 'none';
+
+      // Throttle
+      _submitting = true;
+      document.getElementById('waitlist-btn').disabled = true;
+
+      // Show success immediately
       document.getElementById('waitlist-form').style.display = 'none';
       document.getElementById('waitlist-success').style.display = 'block';
 
-      const referrer = document.referrer || 'direct';
-      const device = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbz7yq1sJA7DAjtHnZH88MXxKMxv7DKRiqaDcZBKIAWRj4OoJE2wEcSEz9yYJHPMP8ExZg/exec';
+      const referrer   = document.referrer || 'direct';
+      const device     = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
+      const scriptUrl  = 'https://script.google.com/macros/s/AKfycbz4nAJ_xBUcsdJYTYB3dxWnKZdaCFAmK032dpHoXnPg9OxntN4aX74sZGwmfngr5haa/exec';
 
-      // Fetch city/region via IP, then submit everything
+      const baseParams = {
+        email, referrer, device,
+        utm_source:   _utm.source,
+        utm_medium:   _utm.medium,
+        utm_campaign: _utm.campaign
+      };
+
       fetch('https://ipapi.co/json/')
         .then(r => r.json())
         .then(loc => {
           const body = new URLSearchParams({
-            email, referrer, device,
-            city:    loc.city        || '',
-            region:  loc.region      || '',
+            ...baseParams,
+            city:    loc.city         || '',
+            region:  loc.region       || '',
             country: loc.country_name || ''
           });
           fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
         })
         .catch(() => {
-          // Location unavailable — submit without it
-          const body = new URLSearchParams({ email, referrer, device });
-          fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+          fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(baseParams) });
         });
     }
 
