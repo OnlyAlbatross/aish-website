@@ -240,12 +240,61 @@
     }
 
     .section-divider span {
-      font-size: 10px;
+      font-size: 15px;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ochre);
       white-space: nowrap;
+    }
+
+    /* ── INGREDIENTS ── */
+    .ingredients-section {
+      text-align: center;
+      padding: 8px 0 4px;
+    }
+    .ingredients-headline {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .ingredients-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .ingredient-pill {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 8px 16px;
+    }
+    .ingredient-pill.highlight {
+      color: var(--ochre);
+      border-color: var(--ochre);
+      opacity: 0.85;
+    }
+    .ingredients-note {
+      margin-top: 16px;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--cream);
+      opacity: 0.7;
+      font-style: italic;
+    }
+    .ingredients-macros {
+      margin-top: 14px;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--ochre);
+      opacity: 0.6;
     }
 
     /* ── STORY ── */
@@ -254,7 +303,7 @@
     }
 
     .story-eyebrow {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -282,7 +331,7 @@
     .story-sig {
       margin-top: 24px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
+      font-size: 18px;
       font-style: italic;
       color: var(--cream);
       opacity: 0.85;
@@ -296,27 +345,27 @@
     .testimonials-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
     }
 
     .testimonial {
       background: var(--cream-faint);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 20px;
+      padding: 24px;
     }
 
     .testimonial-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 15px;
+      font-size: 18px;
       font-style: italic;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--cream);
-      line-height: 1.6;
+      line-height: 1.75;
     }
 
     .testimonial-name {
-      margin-top: 12px;
+      margin-top: 14px;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.14em;
@@ -325,6 +374,10 @@
     }
 
     .testimonial.featured {
+      grid-column: span 2;
+    }
+
+    .testimonials-grid .testimonial:not(.featured):last-child {
       grid-column: span 2;
     }
 
@@ -533,7 +586,7 @@
       <p class="tagline">The protein bar that doesn't wreck your gut.</p>
       <p class="tagline-sub">
         Small batch protein bars inspired by Ayurvedic digestive principles.
-        13g protein, 8 whole food ingredients, no bloating.
+        13g protein, 7 whole food ingredients, no bloating.
         Made by hand in Brooklyn, NYC.
       </p>
     </section>
@@ -553,8 +606,8 @@
           />
           <button class="waitlist-btn" onclick="submitWaitlist()">Join Now</button>
         </div>
-        <p class="waitlist-success" id="waitlist-success">You're on the list. See you at Drop 3.</p>
-        <p class="waitlist-disclaimer">Currently available in NYC. Sign up and we'll notify you when we expand.</p>
+        <p class="waitlist-success" id="waitlist-success">You're on the list. See you at the Next Drop.</p>
+        <p class="waitlist-disclaimer">Launching in NYC — sign up and be the first to know when we come to you.</p>
       </div>
     </section>
 
@@ -569,7 +622,7 @@
         <div class="stat-label">Happy Customers</div>
       </div>
       <div class="stat">
-        <div class="stat-number">8</div>
+        <div class="stat-number">7</div>
         <div class="stat-label">Whole Ingredients</div>
       </div>
       <div class="stat">
@@ -594,6 +647,24 @@
       </div>
     </div>
 
+    <!-- INGREDIENTS -->
+    <div class="section-divider scroll-reveal"><span>What's Inside</span></div>
+
+    <section class="ingredients-section scroll-reveal">
+      <p class="ingredients-headline">7 ingredients. That's it.</p>
+      <div class="ingredients-pills">
+        <span class="ingredient-pill highlight">Cardamom</span>
+        <span class="ingredient-pill highlight">Ginger</span>
+        <span class="ingredient-pill">Peanuts &amp; Peanut Butter</span>
+        <span class="ingredient-pill">Dates</span>
+        <span class="ingredient-pill">Honey</span>
+        <span class="ingredient-pill">Vanilla</span>
+        <span class="ingredient-pill">Pea Protein</span>
+      </div>
+      <p class="ingredients-note">Cardamom and ginger have been used in Ayurvedic medicine for centuries to support healthy digestion.</p>
+      <p class="ingredients-macros">240 cal &nbsp;&middot;&nbsp; 13g protein &nbsp;&middot;&nbsp; 4g fiber &nbsp;&middot;&nbsp; per bar</p>
+    </section>
+
     <!-- STORY -->
     <div class="section-divider scroll-reveal"><span>The Story</span></div>
 
@@ -615,7 +686,12 @@
       <div class="testimonials-grid">
 
         <div class="testimonial featured">
-          <p class="testimonial-text">"Better than RX bars, honestly. I left them out and the consistency was good — soft enough to bite into but not crumbly. If these were side by side I would choose yours over RX bars."</p>
+          <p class="testimonial-text">"Felt super clean. Not artificial at all like most protein bars on the market."</p>
+          <p class="testimonial-name">Dhruv &mdash; Drop 2</p>
+        </div>
+
+        <div class="testimonial">
+          <p class="testimonial-text">"Better than RX bars, honestly. If these were side by side I would choose yours every time."</p>
           <p class="testimonial-name">Brett S. &mdash; Drop 1</p>
         </div>
 
@@ -625,13 +701,13 @@
         </div>
 
         <div class="testimonial">
-          <p class="testimonial-text">"These are amazing." Instantly bought 6 more.</p>
-          <p class="testimonial-name">Nathan K. &mdash; Drop 1 &amp; 2</p>
+          <p class="testimonial-text">"No indigestion — that's for sure."</p>
+          <p class="testimonial-name">Aman S. &mdash; Drop 2</p>
         </div>
 
         <div class="testimonial">
-          <p class="testimonial-text">"Taste was great, definitely felt familiar and wholesome."</p>
-          <p class="testimonial-name">Shloak J. &mdash; Drop 2</p>
+          <p class="testimonial-text">"These are amazing." Instantly bought 6 more.</p>
+          <p class="testimonial-name">Nathan K. &mdash; Drop 1 &amp; 2</p>
         </div>
 
         <div class="testimonial">
