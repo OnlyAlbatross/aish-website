@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AISH — Cardamom Ginger Protein Bars</title>
+  <title>AISH Protein Bars</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400&family=Montserrat:wght@600;700&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -258,7 +259,7 @@
       font-weight: 500;
       letter-spacing: 0.06em;
       color: var(--cream);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .ingredients-rest {
       font-size: 15px;
@@ -267,20 +268,20 @@
       line-height: 1.8;
     }
     .ingredients-macros {
-      margin-top: 20px;
+      margin-top: 14px;
       font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      opacity: 0.6;
-    }
-    .ingredients-free {
-      margin-top: 10px;
-      font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.1em;
       color: var(--muted);
-      opacity: 0.45;
+      opacity: 0.85;
+    }
+    .ingredients-free {
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      opacity: 0.65;
     }
 
     /* ── STORY ── */
@@ -535,12 +536,33 @@
     }
 
     /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .testimonials-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding-bottom: 12px;
+        /* hide scrollbar */
+        scrollbar-width: none;
+      }
+      .testimonials-grid::-webkit-scrollbar { display: none; }
+      .testimonial {
+        flex: 0 0 85%;
+        scroll-snap-align: start;
+      }
+      .testimonial.featured,
+      .testimonials-grid .testimonial:not(.featured):last-child {
+        grid-column: unset;
+        flex: 0 0 85%;
+      }
+    }
+
     @media (max-width: 520px) {
       .container { padding: 0 20px; }
       header { padding-top: 52px; }
       .corner { display: none; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .testimonial.featured { grid-column: span 1; }
       .waitlist-form { flex-direction: column; }
       .waitlist-box { padding: 28px 20px; }
       .stats-bar { flex-wrap: wrap; }
@@ -725,23 +747,39 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    // Waitlist form — opens Google Form in background, shows success state
+    // Waitlist form
     function submitWaitlist() {
       const email = document.getElementById('email-input').value.trim();
       if (!email || !email.includes('@')) {
         document.getElementById('email-input').style.borderColor = 'rgba(203,108,41,0.8)';
         return;
       }
-      // Submit to Google Apps Script -> Google Sheet
-      fetch('https://script.google.com/macros/s/AKfycbw1E_5Z8_tabEMN0A3XDsKfUWmf9CaziGyPbuN46vmcNa2t3ueBuJNhHmCvcy0E7AIRWw/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'email=' + encodeURIComponent(email)
-      }).catch(() => {});
 
+      // Show success immediately — don't make user wait for metadata
       document.getElementById('waitlist-form').style.display = 'none';
       document.getElementById('waitlist-success').style.display = 'block';
+
+      const referrer = document.referrer || 'direct';
+      const device = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbz7yq1sJA7DAjtHnZH88MXxKMxv7DKRiqaDcZBKIAWRj4OoJE2wEcSEz9yYJHPMP8ExZg/exec';
+
+      // Fetch city/region via IP, then submit everything
+      fetch('https://ipapi.co/json/')
+        .then(r => r.json())
+        .then(loc => {
+          const body = new URLSearchParams({
+            email, referrer, device,
+            city:    loc.city        || '',
+            region:  loc.region      || '',
+            country: loc.country_name || ''
+          });
+          fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+        })
+        .catch(() => {
+          // Location unavailable — submit without it
+          const body = new URLSearchParams({ email, referrer, device });
+          fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+        });
     }
 
     // Enter key on input
