@@ -805,29 +805,15 @@
 
       const referrer   = document.referrer || 'direct';
       const device     = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
-      const scriptUrl  = 'https://script.google.com/macros/s/AKfycbz4nAJ_xBUcsdJYTYB3dxWnKZdaCFAmK032dpHoXnPg9OxntN4aX74sZGwmfngr5haa/exec';
+      const scriptUrl  = 'https://script.google.com/macros/s/AKfycbzbxS1iOPkfeRKSVNyOOWEAdiSzGj3ptwUewX7vmnYZLOc0Sz0vz0wKOsEVVLhQauBC_w/exec';
 
-      const baseParams = {
+      const body = new URLSearchParams({
         email, referrer, device,
         utm_source:   _utm.source,
         utm_medium:   _utm.medium,
         utm_campaign: _utm.campaign
-      };
-
-      fetch('https://ipapi.co/json/')
-        .then(r => r.json())
-        .then(loc => {
-          const body = new URLSearchParams({
-            ...baseParams,
-            city:    loc.city         || '',
-            region:  loc.region       || '',
-            country: loc.country_name || ''
-          });
-          fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
-        })
-        .catch(() => {
-          fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(baseParams) });
-        });
+      });
+      fetch(scriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
     }
 
     // Enter key on input
