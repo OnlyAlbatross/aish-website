@@ -478,6 +478,31 @@
       color: var(--ochre);
     }
 
+    .preorder-btn {
+      display: inline-block;
+      background: var(--ochre);
+      color: var(--cream);
+      text-decoration: none;
+      border-radius: 3px;
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s ease;
+    }
+    .preorder-btn:hover { background: var(--ochre-light); }
+
+    .preorder-ships {
+      margin-top: 14px;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--muted);
+      opacity: 0.85;
+      letter-spacing: 0.06em;
+    }
+
     /* ── INSTAGRAM ── */
     .instagram-link {
       display: flex;
@@ -614,7 +639,7 @@
     <section class="tagline-block">
       <p class="tagline">The protein bar that doesn't wreck your gut.</p>
       <p class="tagline-sub">
-        Made by hand in Brooklyn from 7 whole food ingredients.
+        Made by hand in Brooklyn from 8 whole food ingredients.
         The bar you actually look forward to eating.
       </p>
     </section>
@@ -622,36 +647,23 @@
     <!-- WAITLIST -->
     <section class="waitlist-section scroll-reveal">
       <div class="waitlist-box">
-        <p class="waitlist-headline">Sign up below to get yours.</p>
-        <p class="waitlist-sub">Join the waitlist. Drops sell out fast.</p>
-        <div class="waitlist-form" id="waitlist-form">
-          <input
-            type="email"
-            class="waitlist-input"
-            id="email-input"
-            placeholder="your@email.com"
-            autocomplete="email"
-          />
-          <button class="waitlist-btn" id="waitlist-btn" onclick="submitWaitlist()">Join Now</button>
-        </div>
-        <p class="email-error" id="email-error">Please enter a valid email address.</p>
-        <p class="waitlist-success" id="waitlist-success">You're on the list. See you at the Next Drop.</p>
-        <p class="waitlist-disclaimer">Launching in NYC — sign up and be the first to know when we come to you.</p>
+        <a href="https://www.aishwellness.com/order" class="preorder-btn">Pre-Order Drop 4 &rarr;</a>
+        <p class="preorder-ships">Ships week of May 5 &nbsp;&middot;&nbsp; Limited to 300 bars</p>
       </div>
     </section>
 
     <!-- STATS -->
     <div class="stats-bar scroll-reveal">
       <div class="stat">
-        <div class="stat-number">2</div>
+        <div class="stat-number">3</div>
         <div class="stat-label">Drops Sold Out</div>
       </div>
       <div class="stat">
-        <div class="stat-number">30+</div>
+        <div class="stat-number">50+</div>
         <div class="stat-label">Happy Customers</div>
       </div>
       <div class="stat">
-        <div class="stat-number">7</div>
+        <div class="stat-number">8</div>
         <div class="stat-label">Whole Ingredients</div>
       </div>
       <div class="stat">
@@ -686,7 +698,7 @@
       <p class="story-body">
         I have had chronic digestion issues for most of my life. Every protein bar I tried left me bloated, sluggish, or worse. So I started making my own, drawing on Ayurvedic ingredients my family has used for generations — cardamom and ginger for digestion, whole food protein that your body actually recognizes.
         <br><br>
-        After testing two drops across 30+ customers in Brooklyn and NYC, it was clear many people are suffering through the same thing. AISH is for anyone who believes what you eat should make you feel good — not just fuel you and get out of the way.
+        After four drops across 50+ customers in Brooklyn and NYC, it was clear many people are suffering through the same thing. AISH is for anyone who believes what you eat should make you feel good — not just fuel you and get out of the way.
       </p>
       <p class="story-sig">— Abhi, Founder &amp; maker</p>
     </section>

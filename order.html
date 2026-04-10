@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order — AISH Protein Bars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #2a0a08;
+      --bg-card:   #3a120e;
+      --bg-card2:  #321008;
+      --cream:     #f5ede0;
+      --gold:      #cb6c29;
+      --gold-light:#e08040;
+      --text:      #f0e6d8;
+      --muted:     rgba(240,230,216,0.55);
+      --border:    rgba(203,108,41,0.25);
+      --border-h:  rgba(203,108,41,0.6);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-circle {
+      width: 48px;
+      height: 48px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .nav-logo-circle .devanagari {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo-circle .wordmark {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a0604;
+      letter-spacing: 0.12em;
+    }
+    .nav-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .nav-back {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 72px 24px 48px;
+    }
+    .drop-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border-h);
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 16px;
+      line-height: 1.6;
+    }
+    .ships-note {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+    }
+
+    /* ── CARDS ── */
+    .cards-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      nav { padding: 20px 24px; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: border-color 0.25s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(203,108,41,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .card:hover {
+      border-color: var(--border-h);
+      transform: translateY(-2px);
+    }
+    .card.featured {
+      border-color: rgba(203,108,41,0.45);
+    }
+    .card.featured::before {
+      background: radial-gradient(ellipse at top left, rgba(203,108,41,0.10) 0%, transparent 70%);
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .card.featured .card-badge {
+      background: rgba(203,108,41,0.15);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .card-flavor {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .card-stats {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .card-divider { margin: 0 0 24px; }
+
+    /* purchase options */
+    .purchase-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .purchase-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .purchase-option:hover {
+      background: rgba(203,108,41,0.12);
+      border-color: var(--border-h);
+    }
+    .purchase-option.primary {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .purchase-option.primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    .option-left { display: flex; flex-direction: column; gap: 2px; }
+    .option-type {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .purchase-option.primary .option-type { color: #1a0604; }
+    .option-detail {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .purchase-option.primary .option-detail { color: rgba(26,6,4,0.7); }
+
+    .option-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+    .purchase-option.primary .option-price { color: #1a0604; }
+
+    .option-save {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .purchase-option.primary .option-save { color: rgba(26,6,4,0.6); }
+
+    .shipping-note {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── INGREDIENTS STRIP ── */
+    .ingredients-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .ingredients-strip p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+    .ingredients-strip span {
+      color: var(--gold-light);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .testimonials-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    .testimonial {
+      background: var(--bg-card2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 22px;
+    }
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--cream);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .testimonial-author {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── GUARANTEE ── */
+    .guarantee {
+      text-align: center;
+      padding: 0 24px 80px;
+    }
+    .guarantee p {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .guarantee p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── SCROLL REVEAL ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://www.aishwellness.com" class="nav-logo">
+      <div class="nav-logo-circle">
+        <span class="devanagari">ऐश</span>
+        <span class="wordmark">AISH</span>
+      </div>
+      <span class="nav-tagline">ऐश — the good life</span>
+    </a>
+    <a href="https://www.aishwellness.com" class="nav-back">← Back</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero scroll-reveal">
+    <div class="drop-badge">Drop 4 — Pre-Order Now</div>
+    <h1>Clean protein.<br><em>Finally.</em></h1>
+    <p class="hero-sub">Hand-made in Brooklyn from 8 whole food ingredients. The bar you actually look forward to eating.</p>
+    <p class="ships-note">Limited batch · Ships week of May 5 · 3–5 day delivery</p>
+  </section>
+
+  <!-- INGREDIENTS STRIP -->
+  <div class="ingredients-strip scroll-reveal">
+    <p>
+      <span>Dates · Honey · Peanuts · Peanut Butter · Pea Protein · Cardamom · Ginger · Vanilla</span>
+      &nbsp;·&nbsp; No dairy · No artificial sweeteners · No artificial flavors
+    </p>
+  </div>
+
+  <!-- PRODUCT CARDS -->
+  <section class="cards-section">
+    <div class="cards-grid">
+
+      <!-- 8 PACK -->
+      <div class="card scroll-reveal">
+        <span class="card-badge">Try It</span>
+        <div class="card-name">8-Bar Pack</div>
+        <div class="card-flavor">Cardamom Ginger</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-value">13g</span>
+            <span class="stat-label">Plant Protein</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">8</span>
+            <span class="stat-label">Ingredients</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">240</span>
+            <span class="stat-label">Calories</span>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="purchase-options">
+          <a href="https://buy.stripe.com/5kQ6oGdB9gtfexP8Rh0kE01" class="purchase-option primary">
+            <div class="option-left">
+              <span class="option-type">Buy Once</span>
+              <span class="option-detail">$8 shipping · Ships May 5</span>
+            </div>
+            <div style="text-align:right">
+              <div class="option-price">$40</div>
+            </div>
+          </a>
+          <a href="https://buy.stripe.com/4gM6oG68HgtfblD9Vl0kE03" class="purchase-option">
+            <div class="option-left">
+              <span class="option-type">Subscribe Monthly</span>
+              <span class="option-detail">$8 shipping · Cancel anytime</span>
+              <span class="option-save">Save $4/month</span>
+            </div>
+            <div style="text-align:right">
+              <div class="option-price">$36</div>
+            </div>
+          </a>
+        </div>
+        <p class="shipping-note">$8 flat rate shipping</p>
+      </div>
+
+      <!-- 12 PACK -->
+      <div class="card featured scroll-reveal">
+        <span class="card-badge">Most Popular</span>
+        <div class="card-name">12-Bar Pack</div>
+        <div class="card-flavor">Cardamom Ginger</div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-value">13g</span>
+            <span class="stat-label">Plant Protein</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">8</span>
+            <span class="stat-label">Ingredients</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">240</span>
+            <span class="stat-label">Calories</span>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="purchase-options">
+          <a href="https://buy.stripe.com/7sYdR854DccZblD1oP0kE02" class="purchase-option primary">
+            <div class="option-left">
+              <span class="option-type">Buy Once</span>
+              <span class="option-detail">Free shipping · Ships May 5</span>
+            </div>
+            <div style="text-align:right">
+              <div class="option-price">$60</div>
+            </div>
+          </a>
+          <a href="https://buy.stripe.com/7sY8wO0Ondh39dvebB0kE04" class="purchase-option">
+            <div class="option-left">
+              <span class="option-type">Subscribe Monthly</span>
+              <span class="option-detail">Free shipping · Cancel anytime</span>
+              <span class="option-save">Save $6/month</span>
+            </div>
+            <div style="text-align:right">
+              <div class="option-price">$54</div>
+            </div>
+          </a>
+        </div>
+        <p class="shipping-note">Free shipping, always</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <p class="testimonials-label">What people are saying</p>
+    <div class="testimonials-grid">
+      <div class="testimonial scroll-reveal">
+        <p class="testimonial-quote">"Better than RX bars, honestly. If these were side by side I would choose yours every time."</p>
+        <p class="testimonial-author">Brett S. — Drop 1</p>
+      </div>
+      <div class="testimonial scroll-reveal">
+        <p class="testimonial-quote">"Felt super clean. Not artificial at all like most protein bars on the market."</p>
+        <p class="testimonial-author">Dhruv T. — Drop 2</p>
+      </div>
+      <div class="testimonial scroll-reveal">
+        <p class="testimonial-quote">"What the duck did you put in here? It tastes so good. No seriously, we're obsessed."</p>
+        <p class="testimonial-author">Michelle R. — Drop 1 &amp; 2</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee scroll-reveal">
+    <p><strong>Not sure?</strong> Every bar is made by hand in small batches. If you are not satisfied, reach out at <a href="mailto:hello@aishwellness.com" style="color:var(--gold)">hello@aishwellness.com</a> and we will make it right.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Made with care in Brooklyn</span>
+    <a href="mailto:hello@aishwellness.com">hello@aishwellness.com</a>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }, i * 80);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
