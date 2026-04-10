@@ -6,22 +6,22 @@
   <title>Order — AISH Protein Bars</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #2a0a08;
-      --bg-card:   #3a120e;
-      --bg-card2:  #321008;
-      --cream:     #f5ede0;
+      --bg:        #4a1212;
+      --bg-card:   #5e1a1a;
+      --bg-card2:  #3d1010;
+      --cream:     #FEECCE;
       --gold:      #cb6c29;
-      --gold-light:#e08040;
-      --text:      #f0e6d8;
-      --muted:     rgba(240,230,216,0.55);
-      --border:    rgba(203,108,41,0.25);
-      --border-h:  rgba(203,108,41,0.6);
+      --gold-light:#e07e38;
+      --text:      #FEECCE;
+      --muted:     #c4a882;
+      --border:    rgba(254, 236, 206, 0.18);
+      --border-h:  rgba(203, 108, 41, 0.5);
     }
 
     html { scroll-behavior: smooth; }
@@ -66,7 +66,7 @@
       letter-spacing: 0.02em;
     }
     .nav-logo-circle .wordmark {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 12px;
       font-weight: 700;
       color: #1a0604;
@@ -95,7 +95,7 @@
     }
     .drop-badge {
       display: inline-block;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -126,7 +126,7 @@
       line-height: 1.6;
     }
     .ships-note {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -185,7 +185,7 @@
 
     .card-badge {
       display: inline-block;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.15em;
@@ -233,7 +233,7 @@
       gap: 2px;
     }
     .stat-value {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       font-weight: 600;
       color: var(--cream);
@@ -281,7 +281,7 @@
 
     .option-left { display: flex; flex-direction: column; gap: 2px; }
     .option-type {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.08em;
@@ -296,7 +296,7 @@
     .purchase-option.primary .option-detail { color: rgba(26,6,4,0.7); }
 
     .option-price {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 16px;
       font-weight: 700;
       color: var(--cream);
@@ -330,14 +330,16 @@
       margin-bottom: 48px;
     }
     .ingredients-strip p {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 15px;
-      color: var(--muted);
-      letter-spacing: 0.03em;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      line-height: 1.8;
     }
     .ingredients-strip span {
-      color: var(--gold-light);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--cream);
     }
 
     /* ── TESTIMONIALS ── */
@@ -347,7 +349,7 @@
       padding: 0 24px 80px;
     }
     .testimonials-label {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.2em;
@@ -379,7 +381,7 @@
       margin-bottom: 16px;
     }
     .testimonial-author {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.1em;
@@ -446,17 +448,33 @@
   <!-- HERO -->
   <section class="hero scroll-reveal">
     <div class="drop-badge">Drop 4 — Pre-Order Now</div>
-    <h1>Clean protein.<br><em>Finally.</em></h1>
-    <p class="hero-sub">Hand-made in Brooklyn from 8 whole food ingredients. The bar you actually look forward to eating.</p>
-    <p class="ships-note">Limited batch · Ships week of May 5 · 3–5 day delivery</p>
+    <h1>The bar that doesn't<br><em>wreck your gut.</em></h1>
+    <p class="hero-sub">Made by hand in Brooklyn with cardamom, ginger, and 6 other whole food ingredients — drawn from Ayurvedic tradition. Protein that actually feels good.</p>
+    <p class="ships-note">Limited batch · Ships week of May 5 · Ships anywhere in the continental US</p>
   </section>
 
   <!-- INGREDIENTS STRIP -->
   <div class="ingredients-strip scroll-reveal">
-    <p>
-      <span>Dates · Honey · Peanuts · Peanut Butter · Pea Protein · Cardamom · Ginger · Vanilla</span>
-      &nbsp;·&nbsp; No dairy · No artificial sweeteners · No artificial flavors
-    </p>
+    <p><span>8 Whole Food Ingredients</span></p>
+    <p>Naturally Sweetened &nbsp;·&nbsp; Supports Digestion &nbsp;·&nbsp; Whole Food Protein</p>
+    <div style="display:flex;justify-content:center;gap:40px;margin-top:20px;">
+      <div class="stat">
+        <span class="stat-value">13g</span>
+        <span class="stat-label">Plant Protein</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">8</span>
+        <span class="stat-label">Ingredients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">240</span>
+        <span class="stat-label">Calories</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">4g</span>
+        <span class="stat-label">Fiber</span>
+      </div>
+    </div>
   </div>
 
   <!-- PRODUCT CARDS -->
@@ -465,35 +483,13 @@
 
       <!-- 8 PACK -->
       <div class="card scroll-reveal">
-        <span class="card-badge">Try It</span>
+        <span class="card-badge" style="visibility:hidden;">.</span>
         <div class="card-name">8-Bar Pack</div>
+        <p style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Try it. Feel the difference.</p>
         <div class="card-flavor">Cardamom Ginger</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-value">13g</span>
-            <span class="stat-label">Plant Protein</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">8</span>
-            <span class="stat-label">Ingredients</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">240</span>
-            <span class="stat-label">Calories</span>
-          </div>
-        </div>
         <div class="card-divider"></div>
         <div class="purchase-options">
-          <a href="https://buy.stripe.com/5kQ6oGdB9gtfexP8Rh0kE01" class="purchase-option primary">
-            <div class="option-left">
-              <span class="option-type">Buy Once</span>
-              <span class="option-detail">$8 shipping · Ships May 5</span>
-            </div>
-            <div style="text-align:right">
-              <div class="option-price">$40</div>
-            </div>
-          </a>
-          <a href="https://buy.stripe.com/4gM6oG68HgtfblD9Vl0kE03" class="purchase-option">
+          <a href="https://buy.stripe.com/4gM6oG68HgtfblD9Vl0kE03" class="purchase-option primary">
             <div class="option-left">
               <span class="option-type">Subscribe Monthly</span>
               <span class="option-detail">$8 shipping · Cancel anytime</span>
@@ -501,6 +497,15 @@
             </div>
             <div style="text-align:right">
               <div class="option-price">$36</div>
+            </div>
+          </a>
+          <a href="https://buy.stripe.com/5kQ6oGdB9gtfexP8Rh0kE01" class="purchase-option">
+            <div class="option-left">
+              <span class="option-type">Buy Once</span>
+              <span class="option-detail">$8 shipping · Ships May 5</span>
+            </div>
+            <div style="text-align:right">
+              <div class="option-price">$40</div>
             </div>
           </a>
         </div>
@@ -511,33 +516,11 @@
       <div class="card featured scroll-reveal">
         <span class="card-badge">Most Popular</span>
         <div class="card-name">12-Bar Pack</div>
+        <p style="font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Make it a habit.</p>
         <div class="card-flavor">Cardamom Ginger</div>
-        <div class="card-stats">
-          <div class="stat">
-            <span class="stat-value">13g</span>
-            <span class="stat-label">Plant Protein</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">8</span>
-            <span class="stat-label">Ingredients</span>
-          </div>
-          <div class="stat">
-            <span class="stat-value">240</span>
-            <span class="stat-label">Calories</span>
-          </div>
-        </div>
         <div class="card-divider"></div>
         <div class="purchase-options">
-          <a href="https://buy.stripe.com/7sYdR854DccZblD1oP0kE02" class="purchase-option primary">
-            <div class="option-left">
-              <span class="option-type">Buy Once</span>
-              <span class="option-detail">Free shipping · Ships May 5</span>
-            </div>
-            <div style="text-align:right">
-              <div class="option-price">$60</div>
-            </div>
-          </a>
-          <a href="https://buy.stripe.com/7sY8wO0Ondh39dvebB0kE04" class="purchase-option">
+          <a href="https://buy.stripe.com/7sY8wO0Ondh39dvebB0kE04" class="purchase-option primary">
             <div class="option-left">
               <span class="option-type">Subscribe Monthly</span>
               <span class="option-detail">Free shipping · Cancel anytime</span>
@@ -545,6 +528,15 @@
             </div>
             <div style="text-align:right">
               <div class="option-price">$54</div>
+            </div>
+          </a>
+          <a href="https://buy.stripe.com/7sYdR854DccZblD1oP0kE02" class="purchase-option">
+            <div class="option-left">
+              <span class="option-type">Buy Once</span>
+              <span class="option-detail">Free shipping · Ships May 5</span>
+            </div>
+            <div style="text-align:right">
+              <div class="option-price">$60</div>
             </div>
           </a>
         </div>
