@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutrition — AISH Protein Bars</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #4a1212;
+      --bg-card:   #5e1a1a;
+      --cream:     #FEECCE;
+      --gold:      #cb6c29;
+      --gold-light:#e07e38;
+      --muted:     #c4a882;
+      --border:    rgba(254, 236, 206, 0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-circle {
+      width: 48px;
+      height: 48px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .nav-logo-circle .devanagari {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      color: var(--gold);
+    }
+    .nav-logo-circle .wordmark {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a0604;
+      letter-spacing: 0.12em;
+    }
+    .nav-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .nav-back {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+    @media (max-width: 640px) { nav { padding: 20px 24px; } }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 60px 24px 40px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .flavors-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 700px) {
+      .flavors-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── FLAVOR SECTION ── */
+    .flavor-section {}
+
+    .flavor-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .flavor-sub {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    /* ── NUTRITION FACTS PANEL ── */
+    .nutrition-panel {
+      background: #fff;
+      color: #000;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      margin-bottom: 28px;
+    }
+    .nf-title {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1;
+      border-bottom: 1px solid #000;
+      padding-bottom: 4px;
+      margin-bottom: 2px;
+    }
+    .nf-serving {
+      font-size: 12px;
+      border-bottom: 8px solid #000;
+      padding-bottom: 4px;
+      margin-bottom: 2px;
+    }
+    .nf-serving span { font-weight: 700; }
+    .nf-calories-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 4px solid #000;
+      padding-bottom: 2px;
+      margin-bottom: 2px;
+    }
+    .nf-calories-label { font-size: 13px; font-weight: 700; }
+    .nf-calories-dv { font-size: 9px; font-weight: 700; text-align: right; }
+    .nf-calories-num { font-size: 42px; font-weight: 900; line-height: 1; }
+    .nf-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      border-bottom: 0.5px solid #aaa;
+      padding: 2px 0;
+    }
+    .nf-row.thick { border-bottom: 4px solid #000; }
+    .nf-row.indent { padding-left: 16px; }
+    .nf-row.indent2 { padding-left: 32px; }
+    .nf-label { font-weight: 400; }
+    .nf-label b { font-weight: 700; }
+    .nf-dv { font-weight: 400; }
+    .nf-micronutrients {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 8px;
+      border-top: 4px solid #000;
+      padding-top: 4px;
+      font-size: 10px;
+    }
+    .nf-micro-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1px 0;
+      border-bottom: 0.5px solid #aaa;
+    }
+    .nf-footnote {
+      font-size: 9px;
+      border-top: 0.5px solid #000;
+      margin-top: 4px;
+      padding-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* ── INGREDIENTS ── */
+    .ingredients-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+    .ingredients-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .ingredients-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── SCROLL REVEAL ── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://www.aishwellness.com" class="nav-logo">
+      <div class="nav-logo-circle">
+        <span class="devanagari">ऐश</span>
+        <span class="wordmark">AISH</span>
+      </div>
+      <span class="nav-tagline">ऐश — the good life</span>
+    </a>
+    <a href="https://www.aishwellness.com" class="nav-back">← Back</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero scroll-reveal">
+    <h1>Nutrition & Ingredients</h1>
+    <p>Per bar · All values FDA-rounded</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="page">
+    <div class="flavors-grid">
+
+      <!-- CARDAMOM GINGER -->
+      <div class="flavor-section scroll-reveal">
+        <div class="flavor-name">Cardamom Ginger</div>
+        <div class="flavor-sub">7 whole food ingredients</div>
+
+        <div class="nutrition-panel">
+          <div class="nf-title">Nutrition Facts</div>
+          <div class="nf-serving">1 serving per container<br><span>Serving size</span> 1 bar (55g)</div>
+          <div class="nf-calories-row">
+            <div>
+              <div class="nf-calories-label">Calories</div>
+              <div class="nf-calories-num">220</div>
+            </div>
+            <div class="nf-calories-dv">% Daily Value*</div>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Total Fat</b> 11g</span>
+            <span class="nf-dv"><b>14%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label">Saturated Fat 1.5g</span>
+            <span class="nf-dv"><b>8%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label"><i>Trans</i> Fat 0g</span>
+            <span class="nf-dv"></span>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Cholesterol</b> 0mg</span>
+            <span class="nf-dv"><b>0%</b></span>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Sodium</b> 90mg</span>
+            <span class="nf-dv"><b>4%</b></span>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Total Carbohydrate</b> 19g</span>
+            <span class="nf-dv"><b>7%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label">Dietary Fiber 3g</span>
+            <span class="nf-dv"><b>11%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label">Total Sugars 17g</span>
+            <span class="nf-dv"></span>
+          </div>
+          <div class="nf-row indent2">
+            <span class="nf-label">Includes 5g Added Sugars</span>
+            <span class="nf-dv"><b>10%</b></span>
+          </div>
+          <div class="nf-row thick">
+            <span class="nf-label"><b>Protein</b> 12g</span>
+            <span class="nf-dv"></span>
+          </div>
+          <div class="nf-micronutrients">
+            <div class="nf-micro-item"><span>Vitamin D 0.3mcg</span><span>2%</span></div>
+            <div class="nf-micro-item"><span>Calcium 42mg</span><span>4%</span></div>
+            <div class="nf-micro-item"><span>Iron 2mg</span><span>10%</span></div>
+            <div class="nf-micro-item"><span>Potassium 270mg</span><span>6%</span></div>
+          </div>
+          <div class="nf-footnote">* The % Daily Value tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
+        </div>
+
+        <div class="ingredients-block">
+          <div class="ingredients-label">Ingredients</div>
+          <div class="ingredients-text">Peanuts (Jumbo Peanuts, Peanut Butter), Dates, Pea Protein, Honey, Ginger Powder, Cardamom Powder, Vanilla Extract.</div>
+        </div>
+      </div>
+
+      <!-- CHOCOLATE ASHWAGANDHA -->
+      <div class="flavor-section scroll-reveal">
+        <div class="flavor-name">Chocolate Ashwagandha</div>
+        <div class="flavor-sub">7 whole food ingredients</div>
+
+        <div class="nutrition-panel">
+          <div class="nf-title">Nutrition Facts</div>
+          <div class="nf-serving">1 serving per container<br><span>Serving size</span> 1 bar (57g)</div>
+          <div class="nf-calories-row">
+            <div>
+              <div class="nf-calories-label">Calories</div>
+              <div class="nf-calories-num">220</div>
+            </div>
+            <div class="nf-calories-dv">% Daily Value*</div>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Total Fat</b> 11g</span>
+            <span class="nf-dv"><b>14%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label">Saturated Fat 2g</span>
+            <span class="nf-dv"><b>10%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label"><i>Trans</i> Fat 0g</span>
+            <span class="nf-dv"></span>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Cholesterol</b> 0mg</span>
+            <span class="nf-dv"><b>0%</b></span>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Sodium</b> 90mg</span>
+            <span class="nf-dv"><b>4%</b></span>
+          </div>
+          <div class="nf-row">
+            <span class="nf-label"><b>Total Carbohydrate</b> 21g</span>
+            <span class="nf-dv"><b>8%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label">Dietary Fiber 4g</span>
+            <span class="nf-dv"><b>14%</b></span>
+          </div>
+          <div class="nf-row indent">
+            <span class="nf-label">Total Sugars 18g</span>
+            <span class="nf-dv"></span>
+          </div>
+          <div class="nf-row indent2">
+            <span class="nf-label">Includes 5g Added Sugars</span>
+            <span class="nf-dv"><b>10%</b></span>
+          </div>
+          <div class="nf-row thick">
+            <span class="nf-label"><b>Protein</b> 12g</span>
+            <span class="nf-dv"></span>
+          </div>
+          <div class="nf-micronutrients">
+            <div class="nf-micro-item"><span>Vitamin D 0.3mcg</span><span>2%</span></div>
+            <div class="nf-micro-item"><span>Calcium 39mg</span><span>4%</span></div>
+            <div class="nf-micro-item"><span>Iron 4mg</span><span>20%</span></div>
+            <div class="nf-micro-item"><span>Potassium 310mg</span><span>6%</span></div>
+          </div>
+          <div class="nf-footnote">* The % Daily Value tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
+        </div>
+
+        <div class="ingredients-block">
+          <div class="ingredients-label">Ingredients</div>
+          <div class="ingredients-text">Peanuts (Jumbo Peanuts, Peanut Butter), Dates, Pea Protein, Honey, Cacao (Cacao Powder, Cacao Nibs), Ashwagandha, Vanilla Extract.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Made with care in Brooklyn</span>
+    <a href="mailto:hello@aishwellness.com">hello@aishwellness.com</a>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.scroll-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }, i * 80);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
