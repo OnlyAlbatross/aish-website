@@ -75,7 +75,12 @@
       font-size: 14px;
       color: var(--muted);
     }
-    .nav-back {
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
       font-family: 'DM Sans', sans-serif;
       font-size: 13px;
       color: var(--muted);
@@ -83,7 +88,8 @@
       letter-spacing: 0.05em;
       transition: color 0.2s;
     }
-    .nav-back:hover { color: var(--gold); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--cream); }
     @media (max-width: 640px) { nav { padding: 20px 24px; } }
 
     /* ── HERO ── */
@@ -265,7 +271,11 @@
       </div>
       <span class="nav-tagline">ऐश — the good life</span>
     </a>
-    <a href="https://www.aishwellness.com" class="nav-back">← Back</a>
+    <div class="nav-links">
+      <a href="https://www.aishwellness.com">Home</a>
+      <a href="https://www.aishwellness.com/order">Order</a>
+      <a href="https://www.aishwellness.com/nutrition" class="active">Nutrition</a>
+    </div>
   </nav>
 
   <!-- HERO -->

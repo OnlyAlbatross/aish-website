@@ -78,7 +78,12 @@
       font-size: 14px;
       color: var(--muted);
     }
-    .nav-back {
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
       font-family: 'DM Sans', sans-serif;
       font-size: 13px;
       color: var(--muted);
@@ -86,7 +91,8 @@
       letter-spacing: 0.05em;
       transition: color 0.2s;
     }
-    .nav-back:hover { color: var(--gold); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--cream); }
 
     /* ── HERO ── */
     .hero {
@@ -299,6 +305,14 @@
       border-radius: 4px;
     }
 
+    .card-sticker {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
     .shipping-note {
       font-size: 12px;
       color: var(--muted);
@@ -428,7 +442,11 @@
       </div>
       <span class="nav-tagline">ऐश — the good life</span>
     </a>
-    <a href="https://www.aishwellness.com" class="nav-back">← Back</a>
+    <div class="nav-links">
+      <a href="https://www.aishwellness.com">Home</a>
+      <a href="https://www.aishwellness.com/order" class="active">Order</a>
+      <a href="https://www.aishwellness.com/nutrition">Nutrition</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -468,6 +486,7 @@
 
       <!-- CARDAMOM GINGER -->
       <div class="card scroll-reveal">
+        <img src="sticker-cg.png" alt="Cardamom Ginger" class="card-sticker" />
         <div class="card-name">Cardamom Ginger</div>
         <div class="card-flavor">Warm · Aromatic · Gut-friendly</div>
         <div class="card-divider"></div>
@@ -498,6 +517,7 @@
 
       <!-- CHOCOLATE ASHWAGANDHA -->
       <div class="card featured scroll-reveal">
+        <img src="sticker-ca.png" alt="Chocolate Ashwagandha" class="card-sticker" />
         <div class="card-name">Chocolate Ashwagandha</div>
         <div class="card-flavor">Rich · Grounding · Stress-adaptive</div>
         <div class="card-divider"></div>

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk 'NR==545,NR==555' /Users/abhi/repos/aish/index.html)",
+      "Bash(python3 -c \":*)",
+      "Bash(xxd)",
+      "Bash(ls /Users/abhi/Desktop/AISH/*.png)",
+      "Bash(xargs -I{} basename {})",
+      "Bash(ls ~/Desktop/*.jpg ~/Desktop/*.png ~/Desktop/*.jpeg 2>/dev/null; ls /Users/abhi/repos/aish/*.jpg /Users/abhi/repos/aish/*.png /Users/abhi/repos/aish/*.jpeg 2>/dev/null)"
+    ]
+  }
+}

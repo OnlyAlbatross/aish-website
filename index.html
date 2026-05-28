@@ -58,6 +58,25 @@
     .corner-bl { bottom: 20px; left: 20px; border-bottom: 1px solid var(--cream); border-left: 1px solid var(--cream); }
     .corner-br { bottom: 20px; right: 20px; border-bottom: 1px solid var(--cream); border-right: 1px solid var(--cream); }
 
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 24px 32px;
+      gap: 28px;
+    }
+    .site-nav a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover { color: var(--ochre); }
+    .site-nav a.active { color: var(--cream); }
+
     /* ── LAYOUT ── */
     .container {
       position: relative;
@@ -623,6 +642,12 @@
   <div class="corner corner-bl"></div>
   <div class="corner corner-br"></div>
 
+  <nav class="site-nav">
+    <a href="https://www.aishwellness.com" class="active">Home</a>
+    <a href="https://www.aishwellness.com/order">Order</a>
+    <a href="https://www.aishwellness.com/nutrition">Nutrition</a>
+  </nav>
+
   <div class="container">
 
     <!-- LOGO -->
@@ -654,12 +679,12 @@
     <!-- STATS -->
     <div class="stats-bar scroll-reveal">
       <div class="stat">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Drops Sold Out</div>
+        <div class="stat-number">Small</div>
+        <div class="stat-number">Batch</div>
       </div>
       <div class="stat">
-        <div class="stat-number">Small</div>
-        <div class="stat-label">Batch</div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Drops Sold Out</div>
       </div>
       <div class="stat">
         <div class="stat-number">7</div>
